@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.springcloud.hystrix.dao.StudentDao">
+   
+   <sql id = "sql1">
+   	   	 <trim prefix="where" prefixOverrides="and|or">
+   	 	<if test="id!=null">
+   	 		 and id = #{id,jdbcType=NUMERIC}
+   	 	</if>
+   	 	<if test="sname!=null">
+   	 		and sname = #{sname,jdbcType=VARCHAR}
+   	 	</if>
+   	 	<if test="sage!=null">
+   	 		and sage = #{sage,jdbcType=NUMERIC}
+   	 	</if>
+   	 	<if test="ssex!=null">
+   	 		ssex = #{ssex,jdbcType=VARCHAR}
+   	 	</if>
+   	 	<if test="birthday!=null">
+   	 		birthday = #{birthday,jdbcType=DATE}
+   	 	</if>
+   	 </trim>
+   </sql>
+   <select id ="findStudentList" resultType = "com.springcloud.vo.StudentVO">
+   	 select id,
+   	 		sname,
+   	 		sage,
+   	 		ssex,
+   	 		birthday
+   	 from student
+   	 <include refid = "sql1"/>
+   </select>
+    <select id ="findStudentById" resultType = "com.springcloud.vo.StudentVO">
+   	 select id,
+   	 		sname,
+   	 		sage,
+   	 		ssex,
+   	 		birthday
+	from student
+	where id = #{id,jdbcType=NUMERIC}
+   </select>
+   <update id= "updateStudent">
+   	 update student  set
+   	 	sname = #{sname,jdbcType = VARCHAR},
+   	 	sage =  #{sage,jdbcType = NUMERIC},
+   	 	ssex =  #{ssex,jdbcType = VARCHAR},
+   	 	saddress = #{saddress,jdbcType = VARCHAR}
+     <include refid = "sql1"/>
+   </update>
+   <insert id = "addStudent">
+    insert into student(
+    	id,
+    	sname,
+    	sage,
+    	ssex,
+    	ssex,
+    	saddress
+    )
+    values
+    (
+     #{id,jdbcType = NUMERIC},
+     #{sname,jdbcType = VARCHAR},
+     #{sage, jdbcType = NUMERIC},
+     #{ssex, jdbcType = VARCHAR},
+     #{saddress, jdbcType = VARCHAR}
+    )
+   </insert>
+   <delete id = "deleteStudent">
+     delete student  where  id = #{id,jdbcType = NUMERIC}
+   </delete>
+</mapper>
