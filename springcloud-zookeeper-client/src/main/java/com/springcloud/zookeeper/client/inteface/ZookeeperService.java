@@ -19,7 +19,7 @@ public class ZookeeperService{
         @ResponseBody
         String getUser();
     }
-
+    
     public String getUser() {
         return theClient.getUser();
     }
