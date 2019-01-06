@@ -20,6 +20,7 @@ public class ZookeeperService{
         String getUser();
     }
 
+    
     public String getUser() {
         return theClient.getUser();
     }
