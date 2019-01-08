@@ -19,6 +19,10 @@ public class ZookeeperService{
         @ResponseBody
         String getUser();
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/wumingxm/springboot-.git
     
     public String getUser() {
         return theClient.getUser();
