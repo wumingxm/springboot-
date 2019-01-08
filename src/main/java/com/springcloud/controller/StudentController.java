@@ -29,6 +29,8 @@ public class StudentController {
 		}
 		StudentVO student = new StudentVO();
 		System.out.println("display bug");
+		//StudentVO student = new StudentVO();
+		//System.out.println("display bug");
 		return restTemplate.getForEntity("http://springcloud-server-hystrix/findStudentList",List.class,student).getBody();
 	}
 	
